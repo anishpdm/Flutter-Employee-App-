@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_api/models/employee.dart';
+import 'package:flutter_app_api/screens/delete.dart';
+import 'package:flutter_app_api/screens/search.dart';
+import 'package:flutter_app_api/screens/searchemployee.dart';
+import 'package:flutter_app_api/screens/viewemployees.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 import 'dart:async';
 
 void main() {
-  runApp(MyApp());
+  runApp(EmployeeDelete());
 }
 
-Future<Employee> sendData(String apiLink,{Map body}) async{
+Future<dynamic> sendData(String apiLink,{Map body}) async{
 
   return http.post(apiLink,body:body).then( (http.Response response){
 
@@ -18,8 +22,6 @@ Future<Employee> sendData(String apiLink,{Map body}) async{
     return json.decode(response.body);
 
   }  );
-
-
 
 }
 
@@ -117,6 +119,7 @@ class MyApp extends StatelessWidget {
                 var getempcode=(empcode.text);
 
               Employee empdata=new Employee(
+                  id:"",
                   empname:getName,
                   address:getAddress,
                   phoneno:getPhone,
@@ -134,7 +137,20 @@ class MyApp extends StatelessWidget {
 
 
               },
-              child: Text("SUBMIT"),)
+              child: Text("SUBMIT"),),
+
+
+           GestureDetector(
+             onTap: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewEmployees()));
+
+             },
+             child: Container(
+               child: Text("View All"),
+
+             ),
+           )
+
               
             ],
           ),

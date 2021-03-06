@@ -1,7 +1,7 @@
 
 class Employee {
 
-  //String _id;
+  String id;
   String empname;
   String address;
 	String phoneno;
@@ -12,12 +12,12 @@ class Employee {
 	String empcode;
 
 
-	Employee({ this.empname, this.address, this.phoneno, this.designation,
+	Employee({ this.id,this.empname, this.address, this.phoneno, this.designation,
       this.email, this.salary, this.companyname, this.empcode });
 
 
   Employee.fromJsonMap(Map<String, dynamic> map):
-		//_id = map["_id"],
+				id = map["_id"],
 		empname = map["empname"],
 		address = map["address"],
 		phoneno = map["phoneno"],
@@ -29,7 +29,7 @@ class Employee {
 
 	Map<String, String> toJson() {
 		final Map<String, String> data = new Map<String, String>();
-		//data['_id'] = _id;
+		data['id'] = id;
 		data['empname'] = empname;
 		data['address'] = address;
 		data['phoneno'] = phoneno;
